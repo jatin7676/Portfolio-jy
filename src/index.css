@@ -1,142 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Stars animation */
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+body {
+  @apply bg-cream text-ink font-sans antialiased;
 }
 
-.stars::before,
-.stars::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #14b8a6;
-  border-radius: 50%;
-  box-shadow: 
-    20px 20px #14b8a6,
-    40px 40px #3b82f6,
-    90px 10px #14b8a6,
-    110px 80px #3b82f6,
-    200px 50px #14b8a6,
-    280px 20px #3b82f6,
-    320px 120px #14b8a6,
-    420px 60px #3b82f6,
-    520px 90px #14b8a6,
-    620px 30px #3b82f6,
-    720px 110px #14b8a6,
-    820px 40px #3b82f6,
-    920px 80px #14b8a6,
-    150px 150px #3b82f6,
-    250px 250px #14b8a6,
-    350px 350px #3b82f6,
-    450px 450px #14b8a6,
-    550px 550px #3b82f6,
-    650px 150px #14b8a6,
-    750px 250px #3b82f6,
-    850px 350px #14b8a6,
-    950px 450px #3b82f6;
-  animation: sparkle 3s ease-in-out infinite alternate;
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f6f5f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d4c8;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c4bfb0;
 }
 
-.stars::after {
-  animation-delay: 1.5s;
-  transform: scale(0.8);
-  opacity: 0.7;
+/* Gentle entrance animation */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-rise      { animation: rise 0.7s ease-out both; }
+.animate-rise-1    { animation: rise 0.7s ease-out 0.1s both; }
+.animate-rise-2    { animation: rise 0.7s ease-out 0.2s both; }
+.animate-rise-3    { animation: rise 0.7s ease-out 0.3s both; }
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-@keyframes sparkle {
-  0% { opacity: 0.3; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1.2); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
-/* Animations */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-in-delay {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-in-delay-2 {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
-
-.animate-fade-in-delay {
-  animation: fade-in-delay 1s ease-out 0.3s both;
-}
-
-.animate-fade-in-delay-2 {
-  animation: fade-in-delay-2 1s ease-out 0.6s both;
-}
-
-/* Components */
 @layer components {
   .nav-link {
-    @apply text-slate-300 hover:text-white transition-colors duration-200 font-medium;
+    @apply text-muted hover:text-ink transition-colors duration-200 text-sm font-medium;
   }
 
+  /* Primary button — solid ink */
   .btn-primary {
-    @apply bg-teal-600 hover:bg-teal-500 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center;
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3
+           rounded-full text-sm font-medium transition-colors duration-200 hover:bg-black;
   }
 
+  /* Secondary button — outlined */
   .btn-secondary {
-    @apply bg-white text-slate-900 hover:bg-slate-100 px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center;
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-ink px-6 py-3
+           rounded-full text-sm font-medium border border-line hover:border-ink
+           transition-colors duration-200;
   }
 
   .btn-sm {
-    @apply bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded text-sm font-medium transition-all duration-200 flex items-center;
+    @apply inline-flex items-center gap-2 bg-ink text-cream px-4 py-2 rounded-full text-sm
+           font-medium transition-colors duration-200 hover:bg-black;
   }
 
   .btn-outline-sm {
-    @apply border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-4 py-2 rounded text-sm font-medium transition-all duration-200 flex items-center;
+    @apply inline-flex items-center gap-2 border border-line text-ink px-4 py-2 rounded-full
+           text-sm font-medium hover:border-ink transition-colors duration-200;
   }
 
+  /* Surface card */
   .card {
-    @apply bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-slate-600/50 transition-all duration-300;
+    @apply bg-paper border border-line rounded-2xl p-6 transition-colors duration-300
+           hover:border-ink/30;
+  }
+
+  /* Small eyebrow label above section titles */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-accent;
+  }
+
+  .chip {
+    @apply px-3 py-1 rounded-full text-xs font-medium border border-line text-muted bg-paper;
   }
 
   .form-input {
-    @apply w-full px-4 py-3 bg-slate-700/50 border border-slate-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all duration-200 placeholder-slate-400;
+    @apply w-full px-4 py-3 bg-paper border border-line text-ink rounded-xl
+           focus:outline-none focus:border-ink transition-colors duration-200 placeholder-muted;
   }
+
+  .carousel-btn {
+    @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-paper/90
+           backdrop-blur-sm border border-line flex items-center justify-center text-ink
+           shadow-sm hover:border-ink hover:bg-paper transition-colors;
+  }
+}
+
+/* Hide scrollbar for carousel tracks */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Line clamp utility */

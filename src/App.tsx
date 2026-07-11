@@ -10,13 +10,13 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-slate-900 text-white min-h-screen">
+    <div className="bg-cream text-ink min-h-screen">
       <Header />
       <Hero />
       <About />
-      <Skills />
-      <Projects />
       <Experience />
+      <Projects />
+      <Skills />
       <Contact />
       <Footer />
     </div>

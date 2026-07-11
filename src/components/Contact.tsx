@@ -10,63 +10,59 @@ const Contact = () => {
   ];
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'yadav2002jatin@email.com' },
-    { icon: Phone, label: 'Phone', value: '+91 8882450049' },
-    { icon: MapPin, label: 'Location', value: 'Delhi, India' }
+    { icon: Mail, label: 'Email', value: 'yadav2002jatin@email.com', href: 'mailto:yadav2002jatin@email.com' },
+    { icon: Phone, label: 'Phone', value: '+91 8882450049', href: 'tel:+918882450049' },
+    { icon: MapPin, label: 'Location', value: 'Delhi, India', href: '#' }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-slate-800/50">
+    <section id="contact" className="py-16 border-t border-line">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Let's discuss opportunities, collaborations, or just have a chat about technology
-          </p>
+        <div className="mb-14">
+          <p className="eyebrow">Contact</p>
+          <h2 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight">Let's get in touch</h2>
         </div>
 
-        <div className="flex justify-center">
-          <div className="w-full max-w-4xl">
-            <div className="space-y-8">
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
-                <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">
-                  I'm always excited to discuss new opportunities, interesting projects, or potential
-                  collaborations. Whether you're a recruiter, fellow developer, or someone with an
-                  exciting idea, I'd love to hear from you!
-                </p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <p className="text-lg text-muted leading-relaxed max-w-lg">
+              I'm always excited to discuss new opportunities, interesting projects, or potential
+              collaborations. Whether you're a recruiter, fellow developer, or someone with an
+              exciting idea, I'd love to hear from you.
+            </p>
 
-              <div className="space-y-6 max-w-2xl mx-auto">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center group">
-                    <div className="w-12 h-12 bg-teal-500/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                      <item.icon size={20} className="text-teal-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-400">{item.label}</p>
-                      <p className="text-white font-medium">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center">
-                <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      className="text-slate-400 hover:text-teal-400 transition-colors duration-300 border-b border-transparent hover:border-teal-400"
-                      aria-label={social.label}
-                    >
-                      {social.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline-sm"
+                  aria-label={social.label}
+                >
+                  {social.label}
+                </a>
+              ))}
             </div>
+          </div>
+
+          <div className="space-y-3">
+            {contactInfo.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className="card flex items-center gap-4 group"
+              >
+                <div className="w-11 h-11 rounded-xl border border-line flex items-center justify-center shrink-0 group-hover:border-ink transition-colors">
+                  <item.icon size={18} className="text-accent" strokeWidth={1.75} />
+                </div>
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-wider text-muted">{item.label}</p>
+                  <p className="text-ink font-medium">{item.value}</p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Code2 } from 'lucide-react';
+import { Coffee, Code2 } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -7,31 +7,26 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 bg-slate-900/80 border-t border-slate-700">
+    <footer className="py-10 border-t border-line">
       <div className="container mx-auto px-6">
-        <div className="text-center">
-          <button 
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button
             onClick={scrollToTop}
-            className="text-2xl font-bold text-teal-400 mb-4 hover:scale-105 transition-transform cursor-pointer"
+            className="text-lg font-semibold tracking-tight text-ink hover:text-accent transition-colors"
           >
-            
+            Jatin Yadav<span className="text-accent">.</span>
           </button>
-          
-         
-          
-          <div className="flex items-center justify-center gap-2 text-slate-400 mb-4">
-            <span>Made with</span>
-            <Heart size={16} className="text-red-400 animate-pulse" />
-            <span>using</span>
-            <Code2 size={16} className="text-teal-400" />
-            <span>and lots of coffee ☕</span>
+
+          <div className="flex items-center gap-2 text-sm text-muted">
+            <span>Built with</span>
+            <Code2 size={15} className="text-accent" />
+            <span>&amp; coffee</span>
+            <Coffee size={15} className="text-accent" />
           </div>
-          
-          <div className="border-t border-slate-700 pt-6">
-            <p className="text-slate-500 text-sm">
-              © {new Date().getFullYear()} Jatin Yadav. All rights reserved.
-            </p>
-          </div>
+
+          <p className="text-muted text-sm">
+            © {new Date().getFullYear()} Jatin Yadav
+          </p>
         </div>
       </div>
     </footer>

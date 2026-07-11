@@ -1,89 +1,120 @@
-import React from 'react';
+import { Award, ExternalLink } from 'lucide-react';
+import Reveal from './Reveal';
+import Carousel from './Carousel';
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Programming Languages",
-      skills: [
-        { name: "Python", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "C++", level: 75 },
-        { name: "TypeScript", level: 70 }
-      ]
+      title: 'Programming Languages',
+      skills: ['Java', 'C/C++', 'TypeScript', 'HTML', 'CSS', 'JavaScript'],
     },
     {
-      title: "Web Technologies",
+      title: 'Frameworks & Databases',
       skills: [
-        { name: "React.js", level: 85 },
-        { name: "Node.js", level: 80 },
-        { name: "HTML/CSS", level: 90 },
-        { name: "MongoDB", level: 75 },
-        { name: "Express.js", level: 80 }
-      ]
+        'Spring Boot', 'Spring MVC', 'Spring Security', 'Spring Data JPA',
+        'React.js', 'Next.js', 'Node.js', 'Express.js',
+        'MySQL', 'PostgreSQL', 'MongoDB', 'Hydra-DB',
+      ],
     },
     {
-      title: "Tools & Technologies",
-      skills: [
-        { name: "Git/GitHub", level: 85 },
-        { name: "Postman", level: 80 },
-        { name: "VSCode", level: 90 },
-        { name: "Cursor", level: 85 },
-        { name: "GitHub Copilot", level: 80 },
-        { name: "PostgreSQL", level: 75 }
-      ]
-    }
+      title: 'Tools & IDEs',
+      skills: ['Git', 'GitHub', 'IntelliJ IDEA', 'VS Code', 'Docker', 'Postman'],
+    },
+    {
+      title: 'AI Tools',
+      skills: ['Claude Code', 'AI SDK', 'OpenAI API', 'Braintrust'],
+    },
+    {
+      title: 'Fundamentals',
+      skills: ['DSA', 'DBMS', 'Operating Systems', 'Object-Oriented Programming'],
+    },
   ];
 
   const certifications = [
-    "Angela Yu Web Development Bootcamp - Udemy",
-    "Postman Student Expert"
+    {
+      title: 'The Complete Full-Stack Web Development Bootcamp',
+      issuer: 'Udemy',
+      url: 'https://ude.my/UC-1739315a-9a9e-4dd9-bd7b-7624b9171953',
+    },
+    {
+      title: 'Java Spring Framework, Spring Boot, Spring AI – Gen AI',
+      issuer: 'Udemy',
+      url: 'https://ude.my/UC-8a7eeb51-a416-4a60-8cbc-1fd9ee3a5735',
+    },
+    {
+      title: 'AI SDK v6 Crash Course Workshop',
+      issuer: 'Workshop',
+      url: 'https://drive.google.com/file/d/1xIN1_IQs7TXEIw9JDfWgo_-UX3iv7AT-/view?usp=sharing',
+    },
+    {
+      title: 'AI Coding for Real Engineers Cohort',
+      issuer: 'Cohort',
+      url: 'https://drive.google.com/file/d/1pKJ1NBVfgZFq_Us0c44tGyREMsVt5P6X/view?usp=sharing',
+    },
+    {
+      title: 'Postman Student Expert',
+      issuer: 'Postman',
+      url: '',
+    },
   ];
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-16 border-t border-line">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern applications
-          </p>
+        <div className="mb-14">
+          <p className="eyebrow">Skills</p>
+          <h2 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight">Skills &amp; expertise</h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <Reveal className="mb-16">
+        <Carousel>
           {skillCategories.map((category, index) => (
-            <div key={index} className="card">
-              <h3 className="text-xl font-semibold mb-6 text-teal-400">{category.title}</h3>
-              <div className="space-y-4">
+            <div key={index} className="snap-center shrink-0 w-[80%] sm:w-[46%] lg:w-[300px] flex">
+            <div className="card w-full">
+              <h3 className="text-sm font-mono uppercase tracking-wider text-accent mb-5">{category.title}</h3>
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-slate-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-teal-400 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
+                  <span key={skillIndex} className="chip">
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
+            </div>
           ))}
-        </div>
+        </Carousel>
+        </Reveal>
 
-        <div className="text-center">
-          <h3 className="text-2xl font-semibold mb-8">Certifications</h3>
-          <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-            {certifications.map((cert, index) => (
-              <div key={index} className="card text-center hover:scale-105 transition-transform">
-                <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-teal-400 text-xl">🏆</span>
-                </div>
-                <p className="text-sm font-medium">{cert}</p>
-              </div>
-            ))}
+        <div>
+          <h3 className="text-sm font-mono uppercase tracking-wider text-muted mb-6">Certifications</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {certifications.map((cert, index) => {
+              const Wrapper = cert.url ? 'a' : 'div';
+              return (
+                <Reveal key={index} delay={(index % 2) * 90}>
+                <Wrapper
+                  {...(cert.url ? { href: cert.url, target: '_blank', rel: 'noreferrer' } : {})}
+                  className="card flex items-center gap-4 group"
+                >
+                  <div className="w-11 h-11 rounded-xl border border-line flex items-center justify-center shrink-0 group-hover:border-ink transition-colors">
+                    <Award size={18} className="text-accent" strokeWidth={1.75} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-ink leading-snug group-hover:text-accent transition-colors">
+                      {cert.title}
+                    </p>
+                    <p className="text-xs font-mono uppercase tracking-wider text-muted mt-1">{cert.issuer}</p>
+                  </div>
+                  {cert.url && (
+                    <ExternalLink
+                      size={16}
+                      className="text-muted shrink-0 group-hover:text-accent transition-colors"
+                    />
+                  )}
+                </Wrapper>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>
